@@ -1,4 +1,12 @@
 // TCS230 sensor and colour calibration
+/*Pin
+ * S1 = GND
+ * S0 > VCC 5V
+ * OE > D8
+ * Out > D6
+ * S2 > D12
+ * S3 > D13
+*/
 // Input and output using the Serial console.
 //
 #include <MD_TCS230.h>   // colour sensor library
