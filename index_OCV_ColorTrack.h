@@ -34,7 +34,7 @@ h1 {
     background-color: #0A1128;
 }
 .main-controls{
-  padding-top: 5px;
+  padding-top: 10px;
 }
 h2 {
     color: #0A1128;
@@ -64,62 +64,30 @@ th{
     margin-right:50px;
     margin-left:50px;
 }
-
-#colorDetect{ 
-    border: none;
-    color: #FEFCFB;
-    background-color: #0A1128;
-    padding: 15px;
-    text-align: center;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 4px;
-}
-#restart{
-    border: none;
-    color: #FEFCFB;
-    background-color: #7B0828;
-    padding: 15px;
-    text-align: center;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 4px;  
-}
-button{
-    border: none;
-    color: #FEFCFB;
-    background-color: #0A1128;
-    padding: 10px;
-    text-align: center;
-    display: inline-block;
-    border-radius: 4px;    
-}
-
 </style>
 <body>
-    <div class="topnav">
-        <h1>Color classification</h1>
-    </div>
-    <div class="main-controls">
-        <table>
-            <tr>
-                <td><center><input type="button" id="colorDetect" value="Color classification"><input type="button" id="restart" value="Reset"></center></td> 
-            </tr>      
-        </table>
-    </div>
 <div class="container">
   <div class = "row"> 
     <div class = "column"> 
         <div class="section">
             <div class ="video-container">
-            
-                <h2>Src image</h2>   
-                <center><img id="ShowImage" src="" style="display:none"></center>
+                <h2>Src image</h2>  
+                <center>
+                <img id="ShowImage" class="img-fluid" src="" style="display:none">
+                </center>
                 <center><canvas id="canvas" style="display:none"></canvas></center>
             </div>
         </div>
         <div class="section">
             <table>
+            <tr>
+                  <td>Control</td>
+                  <td><div class="btn-group" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-success" id="colorDetect">Color classification</button>
+                  <button type="button" class="btn btn-danger" id="restart">Reset</button>
+                </div></td>
+              </tr>
+            
               <tr>
                   <td>Quality</td>
                   <td><input type="range" id="quality" min="10" max="63" value="10"></td>
@@ -177,7 +145,7 @@ button{
                 <td>X probe:&#160;&#160;&#160;<span id="X_PROBEdemo"></span></td>
                 <td><input type="range" id="x_probe" min="0" max="400" value="200" class = "slider"></td>
                 <td>Y probe:&#160;&#160;&#160;<span id="Y_PROBEdemo"></span></td>
-                <td> <input type="range" id="y_probe" min="0" max="296" value="145" class = "slider"></td>
+                <td> <input type="range" id="y_probe" min="0" max="296" value="148" class = "slider"></td>
             </tr>
         </table>
       </div>
@@ -269,7 +237,7 @@ var BMAX=50;
 var BMIN=0;
 var THRESH_MIN=120;
 var X_PROBE=200;
-var Y_PROBE=196;
+var Y_PROBE=150;
 var R=0;
 var G=0;
 var B=0;
@@ -770,43 +738,43 @@ function MaxAreaArg(arr){
 function clear_canvas(){
     ctx.clearRect(0,0,txtcanvas.width,txtcanvas.height);
     ctx.rect(0,0,txtcanvas.width,txtcanvas.height);
-    ctx.fillStyle="red";
+    ctx.fillStyle="white";
     ctx.fill();
 }
 
 function drawReadyText(){
     ctx.fillStyle = 'black';
-    ctx.font = '20px serif';
+    ctx.font = '18px Prompt';
     ctx.fillText('OpenCV.JS READY',txtcanvas.width/4,txtcanvas.height/10);
 }          
 
 function drawColRowText(x,y){
     ctx.fillStyle = 'black';
-    ctx.font = '20px serif';
+    ctx.font = '18px Prompt';
     ctx.fillText('ImageCols='+x,0,txtcanvas.height/10);
     ctx.fillText('ImageRows='+y,txtcanvas.width/2,txtcanvas.height/10);
 } 
 
 function drawRGB_PROBE_Text(){
     ctx.fillStyle = 'black';
-    ctx.font = '20px serif';
+    ctx.font = '18px Prompt';
     ctx.fillText('Rp='+R,0,2*txtcanvas.height/10);
     ctx.fillText('Gp='+G,txtcanvas.width/4,2*txtcanvas.height/10);
     ctx.fillText('Bp='+B,txtcanvas.width/2,2*txtcanvas.height/10);
     ctx.fillText('Ap='+A,3*txtcanvas.width/4,2*txtcanvas.height/10);
-    ctx.fillText('Gray='+Gray,0,4*txtcanvas.height/10); //--------------------------------
+    ctx.fillText('Gray='+Gray,0,3*txtcanvas.height/10); //--------------------------------
 }
 
 function drawXCM_YCM_Text(){
     ctx.fillStyle = 'black';
-    ctx.font = '20px serif';
+    ctx.font = '18px Prompt';
     ctx.fillText('XCM='+Math.round(x_cm),0,3*txtcanvas.height/10); 
     ctx.fillText('YCM='+Math.round(y_cm),txtcanvas.width/4,3*txtcanvas.height/10);    
 }
 
 function drawErrorTracking_Text(){
     ctx.fillStyle = 'black';
-    ctx.font = '20px serif';
+    ctx.font = '18px Prompt';
     ctx.fillText('ERROR TRACKING-NO CONTOUR',0,3*txtcanvas.height/10);
 }          
          
